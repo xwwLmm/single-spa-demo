@@ -1,8 +1,8 @@
 <template lang="pug">
   div
-    template(v-if="$route.name !== 'login'")
-      LeftMenu(:menuList="menus")
-    Login(v-else)
+    template(v-show="$route.name !== 'login'")
+      LeftMenu
+    Login(v-if="$route.name === 'login'")
     div#vue
 </template>
 <script>
@@ -17,12 +17,6 @@
       };
     },
     async created() {
-      await this.$http.post('/IndexController/index')
-      const data = (await this.$http.post('/manage/staff-manage-pc/get-org-right')).data
-
-      this.menus = data.data.leftMenu
-      console.log(this.$route.name)
-
     },
     watch: {
       '$route'(newVal) {

@@ -1,3 +1,13 @@
+const path = require('path')
+function addStyleResource (rule) {
+  rule.use('style-resource')
+      .loader('style-resources-loader')
+      .options({
+        patterns: [
+          path.resolve(__dirname, './src/assets/styles/_variables.styl'),
+        ],
+      })
+}
 module.exports = {
   css: {
     loaderOptions: {
@@ -23,6 +33,10 @@ module.exports = {
         .use('pug-html-loader')
         .loader('pug-html-loader')
         .end()
+
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
+    types.forEach(type => addStyleResource(config.module.rule('stylus').oneOf(type)))
+
   },
   devServer: {
     proxy: {

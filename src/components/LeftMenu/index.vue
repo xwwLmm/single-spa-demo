@@ -15,17 +15,24 @@
 
   export default {
     name: 'LeftMenu',
-    props: {
-      menuList: Array
-    },
     components: {
       MenuItem
     },
     data() {
       return {
+        menuList: []
       }
     },
-
+    watch: {
+      menuList(newVal) {
+        this.recursion(newVal)
+      }
+    },
+    async created() {
+      const data = (await this.$http.post('/manage/staff-manage-pc/get-org-right')).data
+      this.recursion(data.data.leftMenu)
+      this.menuList = data.data.leftMenu
+    },
     methods: {
       recursionByTab(menus, currTab) {
         menus.forEach(m => {
@@ -86,7 +93,7 @@
     padding-top 50px
     background-color #2a2f34
     z-index 300
-    color #fff
+    color $reverse-color
     overflow-y auto
 
     .menu-icon
