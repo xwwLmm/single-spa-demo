@@ -46,9 +46,9 @@ export default {
   isFunction: (params) =>  'function' === trueType(params),
   isNumber,
   toNum,
-  error: () => console.error(arguments),
-  log: () => console.log(arguments),
-  warn: () => console.log(arguments),
+  error: (...params) => console.error(...params),
+  log: (...params) => console.log(...params),
+  warn: (...params) => console.log(...params),
   getDPR,
   MOBILE_REGEX
 }
