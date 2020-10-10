@@ -1,0 +1,87 @@
+$theme-color-bd = #e5eef9
+
+// @stylint off
+.theme-before-color:before
+  color $theme-color
+
+.theme-before-bg:before
+  background-color $theme-color
+
+.theme-color
+  color $theme-color !important
+
+.theme-bd
+  border-color $theme-color !important
+
+.theme-color-bd
+  border-color $theme-color-bd !important
+
+.theme-bg
+  background-color $theme-color !important
+
+.theme-bdg
+  border-color $theme-color !important
+  background-color $theme-color !important
+
+.btn-theme-default
+  bbColor $theme-color $theme-color $reverse-color
+  bbActive $theme-color-darker $theme-color-darker $reverse-color
+  &.inactive
+    bbActive $theme-color $theme-color $reverse-color
+
+
+.btn-theme-primary
+  border-radius $half-input-size
+  bbColor $reverse-color $theme-color
+  bbActive $reverse-color $theme-color-darker
+  &.inactive
+    bbActive $reverse-color $theme-color
+// @stylint on
+
+.panel.panel-theme
+  background-color transparent
+  margin-bottom 0
+
+  .panel-heading
+    background-color transparent
+    padding 10px
+
+  .panel-title
+    border-left 4px solid $theme-color
+    color $theme-color
+    padding-left 5px
+    font-size $common-size
+
+  .panel-body
+    background-color $back-light-color
+    padding 10px
+
+@keyframes rotate
+  from
+    transform translate3d(-50%, -50%, 0) rotate(0) scale(1)
+  50%
+    transform translate3d(-50%, -50%, 0) rotate(180deg) scale(.6)
+  to
+    transform translate3d(-50%, -50%, 0) rotate(360deg) scale(1)
+
+[lazy="loaded"]
+  background-size cover
+  background-position center
+  background-repeat no-repeat
+
+[lazy="loading"]
+  relative()
+
+  &:before
+    middleCenter()
+    content ' '
+    size 20px
+    border 2px solid
+    border-color $placeholder-color transparent
+    border-radius 100%
+    animation rotate 1s 0s ease-in-out infinite
+    animation-fill-mode both
+
+// @stylint off
+[lazy="error"]
+  background-color $card-back
